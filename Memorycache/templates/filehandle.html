@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cloud Assignment3 AWS</title>
+</head>
+<body>
+<div class="container">
+
+    <h2>Shwetha Konairy Suresha &nbsp 1001556725</h2>
+
+    <label><b>Upload CSV File:</b></label>
+    <form id="formUpload" action="/csv_file_upload" enctype="multipart/form-data" method="post">
+    <p class='description'></p> Please upload your csv file here:<br><input type = "file" name="file_upload"><input type="submit" value="Submit" id="submit_file"><br><br>
+    </form>
+
+    <label><b>Execute query with SQL</b></label>
+    <form id="sqlform" action="/executesql" method="POST">
+       Limit: <input type="text" name="limits" value=" ">
+        <br> Time:{{ time1 }}<br>
+        <input type="submit" name="execute" value="execute" ><br><br>
+    </form>
+	
+    <label><b>SQLEXECUTE Restriction</b></label>
+    <form id="SR" action="/executesqlrestrict" method="POST">
+        locationSource <input type="text" name="limit" value=" ">
+	<br> Time To Execute:{{ time2 }}<br>
+        <input type="submit" name="execute" value="execute" ><br><br>
+    </form>
+
+    <label><b>Modify data</b></label>
+    <form id="latlong" action="/latlong" method="POST">
+       Input: <input type="text" name="limit">
+	   <br> Time:{{ time }}<br>
+       <input type="submit" name="execute" value="execute" ><br><br>
+    </form>
+	  <table border="2px">
+                <tr><td>Institute Details</td></tr>
+                {% for obj in Data1 %}
+                    <tr><td>{{ obj.STATE }}</td>
+			<td>{{ obj.INSTNM }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+	
+   <label><b>Execute query with Memcached</b></label>
+    <form id="memform" action="/memexecute" method="POST">
+         Limit: <input type="text" name="limit">
+        <br> Time:{{ time2 }}<br>
+        <input type="submit" name="execute" value="execute" ><br><br>
+    </form>
+	
+    <label><b>Query 1:</b></label>
+    <form id="query1form" action="/query1" method="POST">
+	     State: <input type="text" name="State">
+		 <br> CountNo:{{ answer2 }} <br>
+		 <table border="3px">
+			<tr><td>Name Of Institution</td></tr><br>
+			{% for object in answer1 %}
+				<tr><td>{{ object.INSTNM }}</td></tr>
+			{% endfor %}
+		 </table>
+         <input type="submit" name="execute" value="execute" ><br><br>
+    </form>
+	
+    <label><b>Query 2:</b></label>
+    <form id="query2form" action="/query2" method="POST">
+	     State: <input type="text" name="State">
+		 <br> CountNo:{{ answer4 }} <br>
+		 <table border="3px">
+			<tr><td>ALIAS NAME</td></tr><br>
+			{% for object in answer3 %}
+				<tr><td>{{ object.INSTNM }}</td></tr>
+			{% endfor %}
+		 </table>
+        <input type="submit" name="execute" value="execute" ><br><br>
+    </form>
+	
+    <label><b>Query 3:</b></label>
+    <form id="query3form" action="/query3" method="POST">
+        Latitude: <input type="text" name="val1" value=" ">
+        Longitude: <input type="text" name="val2" value=" ">
+        <input type="submit" name="execute" value="execute" ><br><br>
+    </form>
+	<table border="2px">
+                <tr><td>Id</td></tr>
+                {% for obj in res %}
+                    <tr><td>{{obj.Id}}</td>
+                </tr>
+                {% endfor %}
+    </table>
+		
+</div>
+</body>
+</body>
+</html>
